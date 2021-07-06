@@ -32,10 +32,22 @@
         {
             if (existePeca(pos))
             {
-                throw new TabuleiroException ("Já existe peça nessa posição!");
+                throw new TabuleiroException("Já existe peça nessa posição!");
             }
             pecas[pos.linha, pos.coluna] = p;
             p.posicao = pos;
+        }
+
+        public Peca retirarPeca(Posicao pos)
+        {
+            if(peca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = peca(pos);
+            aux.posicao = null;
+            pecas[pos.linha, pos.coluna] = null;
+            return aux;
         }
 
         public bool posicaoValida(Posicao pos)
@@ -49,7 +61,7 @@
 
         public void validarPosicao(Posicao pos)
         {
-            if(!posicaoValida(pos))
+            if (!posicaoValida(pos))
             {
                 throw new TabuleiroException("Posição invalida!");
             }
